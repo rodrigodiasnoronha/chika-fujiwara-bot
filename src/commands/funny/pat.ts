@@ -18,7 +18,7 @@ export const pat: Command = {
     execute(client: Client, message: Message, args: Array<string>) {
         const user = message.mentions.users.first();
 
-        if (!user && args.length) {
+        if (!user) {
             return message.reply(
                 'não entendi o que quis dizer, marque algum usuário! :wink: '
             );
