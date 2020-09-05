@@ -77,6 +77,11 @@ export const attack: Command = {
             gif:
                 'https://i.pinimg.com/originals/c4/07/40/c4074087283441de471b78e0fb56cf25.gif',
         },
+        {
+            message: 'SHUT UP!',
+            gif:
+                'https://i.pinimg.com/originals/0f/c9/e6/0fc9e63a218555ef2460c2c268d8daa5.gif',
+        },
     ],
     async execute(client: Client, message: Message, args: Array<string>) {
         if (!message.mentions.users.size) {

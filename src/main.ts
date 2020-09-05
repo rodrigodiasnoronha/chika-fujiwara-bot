@@ -73,6 +73,10 @@ client.on('message', (message) => {
         return botCommands.funny.thinking.execute(client, message, args);
     }
 
+    if (botCommands.funny.slap.aliases.includes(command)) {
+        return botCommands.funny.slap.execute(client, message, args);
+    }
+
     /**
      *
      * Comandos de suporte
