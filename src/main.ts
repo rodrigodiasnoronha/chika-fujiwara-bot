@@ -58,7 +58,7 @@ client.on('message', (message) => {
     }
 
     if (botCommands.funny.ping.aliases.includes(command)) {
-        return botCommands.funny.pat.execute(client, message, args);
+        return botCommands.funny.ping.execute(client, message, args);
     }
 
     if (botCommands.funny.sad.aliases.includes(command)) {
