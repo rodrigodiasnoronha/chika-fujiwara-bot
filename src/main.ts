@@ -1,11 +1,23 @@
 import 'dotenv/config';
 import { Client } from 'discord.js';
 import botCommands from './commands';
+import { presences } from './utils/presences';
 
 const client = new Client();
 const prefix = process.env.BOT_PREFIX || 'f.';
 
-client.on('ready', () => console.log('I am alive!"'));
+client.on('ready', () => {
+    const presence = presences[Math.floor(Math.random() * presences.length)];
+    client.user?.setPresence(presence);
+
+    setInterval(() => {
+        const presence =
+            presences[Math.floor(Math.random() * presences.length)];
+        client.user?.setPresence(presence);
+    }, 1000 * 60 * 60 * 4); // Executado cada 4 horas
+
+    console.log('I am alive!"');
+});
 
 client.on('message', (message) => {
     if (!message.content.startsWith(prefix) || message.author.bot) return;
