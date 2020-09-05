@@ -9,7 +9,7 @@
     Me chamo Fujiwara Chika, yo! 🎶
     <br/>
     Sou uma BOT do Discord, yo! 🎶 <br/>
-    Criada para animar ser server, yo! 🎶 </h1>
+    Criada para animar seu server, yo! 🎶 </h1>
 </div>
 
 <div style="display:flex;align-items:center;justify-content:center">
