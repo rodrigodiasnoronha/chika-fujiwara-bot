@@ -28,7 +28,8 @@ export const helper: Command = {
                 'demonstre que você está pensando em alguém ou em alguma coisa!',
                 false
             )
-            .addField('`f.slap <@user>`', 'Estapeie alguém!', false);
+            .addField('`f.slap <@user>`', 'Estapeie alguém!', false)
+            .addField('`f.cake @user`', 'Dê um bolo para alguém!');
 
         return message.channel.send(messageEmbed);
     },
