@@ -19,6 +19,9 @@ client.on('ready', () => {
     console.log('I am alive!"');
 });
 
+client.on('error', console.error);
+client.on('warn', console.warn);
+
 client.on('message', (message) => {
     if (!message.content.startsWith(prefix) || message.author.bot) return;
 
