@@ -27,7 +27,8 @@ export const helper: Command = {
                 '`f.pensando <mensagem> ou @user`',
                 'demonstre que você está pensando em alguém ou em alguma coisa!',
                 false
-            );
+            )
+            .addField('`f.slap <@user>`', 'Estapeie alguém!', false);
 
         return message.channel.send(messageEmbed);
     },
