@@ -22,7 +22,12 @@ export const helper: Command = {
             .addField('`f.shame`', 'fique com vergonha', false)
             .addField('`f.ping`', 'jogue ping pong comigo', false)
             .addField('`f.atacar @user`', 'ataca alguém', false)
-            .addField('`f.cafuné @user`', 'faz cafuné em alguém', false);
+            .addField('`f.cafuné @user`', 'faz cafuné em alguém', false)
+            .addField(
+                '`f.pensando <mensagem> ou @user`',
+                'demonstre que você está pensando em alguém ou em alguma coisa!',
+                false
+            );
 
         return message.channel.send(messageEmbed);
     },
