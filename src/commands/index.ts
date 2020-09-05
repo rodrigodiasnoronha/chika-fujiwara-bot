@@ -12,6 +12,7 @@ import { sad } from './funny/sad';
 import { shame } from './funny/shame';
 import { thinking } from './funny/thinking';
 import { slap } from './funny/slap';
+import { cake } from './funny/cake';
 
 // help commands
 import { helper } from './help/helper';
@@ -34,5 +35,6 @@ export default {
         shame,
         thinking,
         slap,
+        cake,
     },
 };
