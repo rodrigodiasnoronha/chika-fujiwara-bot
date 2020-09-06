@@ -13,6 +13,10 @@ export const thinking: Command = {
         'https://i.pinimg.com/originals/c3/f2/c6/c3f2c62aaca6dea6b9abeef11a2939d2.gif',
         'https://i.pinimg.com/originals/9f/8c/9b/9f8c9bbae48b93250147f2c089b2fde1.gif',
         'https://i.pinimg.com/originals/31/de/e4/31dee4b3a2a5c14c1b7d834814334001.gif',
+        'https://bloomreviewsblog.files.wordpress.com/2018/06/anime-thinking-gif.gif',
+        'https://www.gifimage.net/wp-content/uploads/2018/06/thinking-anime-gif-10.gif',
+        'http://pa1.narvii.com/6364/f43cd89e56ba467fa60619409d73255b5aa9297a_hq.gif',
+        'https://gifimage.net/wp-content/uploads/2017/09/anime-thinking-gif-8.gif',
     ],
     execute(client: Client, message: Message, args: Array<string>) {
         let gif = this.gifs[Math.floor(Math.random() * this.gifs.length)];

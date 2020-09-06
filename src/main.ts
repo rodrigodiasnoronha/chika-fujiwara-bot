@@ -96,6 +96,14 @@ client.on('message', (message) => {
         return botCommands.funny.cake.execute(client, message, args);
     }
 
+    if (botCommands.funny.bite.aliases.includes(command)) {
+        return botCommands.funny.bite.execute(client, message, args);
+    }
+
+    if (botCommands.funny.sleepy.aliases.includes(command)) {
+        return botCommands.funny.sleepy.execute(client, message, args);
+    }
+
     /**
      *
      * Comandos de suporte

@@ -29,7 +29,9 @@ export const helper: Command = {
                 false
             )
             .addField('`f.slap <@user>`', 'Estapeie alguém!', false)
-            .addField('`f.cake @user`', 'Dê um bolo para alguém!');
+            .addField('`f.cake @user`', 'Dê um bolo para alguém!')
+            .addField('`f.bite @user`', 'morde alguém!', false)
+            .addField('`f.sleepy`', 'Demonstre que está com sono', false);
 
         return message.channel.send(messageEmbed);
     },
