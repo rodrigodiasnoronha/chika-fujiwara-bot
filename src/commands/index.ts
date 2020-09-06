@@ -13,6 +13,8 @@ import { shame } from './funny/shame';
 import { thinking } from './funny/thinking';
 import { slap } from './funny/slap';
 import { cake } from './funny/cake';
+import { bite } from './funny/bite';
+import { sleepy } from './funny/sleepy';
 
 // help commands
 import { helper } from './help/helper';
@@ -36,5 +38,7 @@ export default {
         thinking,
         slap,
         cake,
+        bite,
+        sleepy,
     },
 };
