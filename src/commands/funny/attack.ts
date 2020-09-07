@@ -82,6 +82,16 @@ export const attack: Command = {
             gif:
                 'https://i.pinimg.com/originals/0f/c9/e6/0fc9e63a218555ef2460c2c268d8daa5.gif',
         },
+        {
+            message: 'EMERALD SPLASH!',
+            gif:
+                'https://vignette.wikia.nocookie.net/powerlisting/images/f/f2/Hierophant_Green_%28JoJo%29_Emerald_Splash.gif/revision/latest?cb=20190717104908',
+        },
+        {
+            message: 'YAMERO!',
+            gif:
+                'https://i.pinimg.com/originals/fc/15/80/fc15809a249a9ce96f6d408611616226.gif',
+        },
     ],
     async execute(client: Client, message: Message, args: Array<string>) {
         if (!message.mentions.users.size) {

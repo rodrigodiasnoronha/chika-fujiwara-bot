@@ -28,11 +28,12 @@ export const helper: Command = {
                 'demonstre que você está pensando em alguém ou em alguma coisa!',
                 false
             )
-            .addField('`f.slap <@user>`', 'Estapeie alguém!', false)
+            .addField('`f.slap @user`', 'Estapeie alguém!', false)
             .addField('`f.cake @user`', 'Dê um bolo para alguém!')
             .addField('`f.bite @user`', 'morde alguém!', false)
             .addField('`f.sleepy`', 'Demonstre que está com sono', false)
-            .addField('`f.desviar`', 'Desvie de algo', false);
+            .addField('`f.desviar`', 'Desvie de algo', false)
+            .addField('`f.fugir @user`', 'Fugir de alguém', false);
 
         return message.channel.send(messageEmbed);
     },

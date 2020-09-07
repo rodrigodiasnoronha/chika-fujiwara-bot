@@ -108,6 +108,10 @@ client.on('message', (message) => {
         return botCommands.funny.dodge.execute(client, message, args);
     }
 
+    if (botCommands.funny.runaway.aliases.includes(command)) {
+        return botCommands.funny.runaway.execute(client, message, args);
+    }
+
     /**
      *
      * Comandos de suporte
