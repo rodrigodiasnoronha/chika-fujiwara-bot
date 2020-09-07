@@ -31,7 +31,8 @@ export const helper: Command = {
             .addField('`f.slap <@user>`', 'Estapeie alguém!', false)
             .addField('`f.cake @user`', 'Dê um bolo para alguém!')
             .addField('`f.bite @user`', 'morde alguém!', false)
-            .addField('`f.sleepy`', 'Demonstre que está com sono', false);
+            .addField('`f.sleepy`', 'Demonstre que está com sono', false)
+            .addField('`f.desviar`', 'Desvie de algo', false);
 
         return message.channel.send(messageEmbed);
     },

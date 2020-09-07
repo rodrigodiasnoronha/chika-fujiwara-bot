@@ -15,6 +15,7 @@ import { slap } from './funny/slap';
 import { cake } from './funny/cake';
 import { bite } from './funny/bite';
 import { sleepy } from './funny/sleepy';
+import { dodge } from './funny/dodge';
 
 // help commands
 import { helper } from './help/helper';
@@ -25,7 +26,10 @@ export default {
     },
     funny: {
         attack,
+        bite,
+        cake,
         cry,
+        dodge,
         eightBall,
         hug,
         jankenpon,
@@ -35,10 +39,8 @@ export default {
         ping,
         sad,
         shame,
-        thinking,
         slap,
-        cake,
-        bite,
         sleepy,
+        thinking,
     },
 };
