@@ -38,7 +38,7 @@ export const slap: Command = {
                 'https://i.pinimg.com/originals/42/38/d3/4238d39eb91be9edcd9bf578c8e4bb11.gif';
             const messageEmbed = new MessageEmbed().setImage(gif);
             return message.channel.send(
-                `<@${client.user}> estapegou <@${message.author}>! Você mereceu!`,
+                `<@${client.user}> estapeou <@${message.author}>! Você mereceu!`,
                 messageEmbed
             );
         }
