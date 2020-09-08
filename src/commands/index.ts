@@ -26,6 +26,9 @@ import { ban } from './moderation/ban';
 import { kick } from './moderation/kick';
 import { prune } from './moderation/prune';
 
+// extras commands
+import { avatar } from './extras/avatar';
+
 export default {
     help: {
         helper,
@@ -54,5 +57,8 @@ export default {
         slap,
         sleepy,
         thinking,
+    },
+    extras: {
+        avatar,
     },
 };

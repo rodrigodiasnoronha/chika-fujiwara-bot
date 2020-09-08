@@ -6,35 +6,46 @@ export const helper: Command = {
     description: 'Veja aqui minha lista de comandos!',
     aliases: ['help', 'ajuda', ' helper'],
     args: [],
+    commands: {
+        moderation: ['`k.kick`'],
+        funny: [
+            '`f.beijar`',
+            '`f.chorar`',
+            '`f.jankenpon`',
+            '`f.abracar`',
+            '`f.vergonha`',
+            '`f.ping`',
+            '`f.atacar`',
+            '`f.cafuné`',
+            '`f.pensando`',
+            '`f.tapa`',
+            '`f.bolo`',
+            '`f.morder`',
+            '`f.sono`',
+            '`f.desviar`',
+            '`f.fugir`',
+        ],
+        extras: ['`f.avatar`'],
+        help: {},
+    },
 
     execute(client: Client, message: Message, args: Array<string>) {
+        const funCommands = this.commands.funny.join(', ');
+        const extrasCommands = this.commands.extras.join(', ');
+        const modCommands = this.commands.moderation.join(', ');
+
+        const totalCommands =
+            this.commands.funny.length +
+            this.commands.moderation.length +
+            this.commands.extras.length;
+
         const messageEmbed = new MessageEmbed()
             .setTitle('Ajuda - Lista de comandos')
             .setDescription('Abaixo está uma lista com todos os meus comandos.')
-            .addField('`f.chorar`', 'chore um pouco', false)
-            .addField('`f.beijar @user`', 'beije alguém', false)
-            .addField(
-                '`f.jankenpon <pedra | papel | tesoura>`',
-                'Jogue pedra, papel ou tesoura comigo!',
-                false
-            )
-            .addField('`f.abracar @user`', 'Abraçar alguém', false)
-            .addField('`f.shame`', 'fique com vergonha', false)
-            .addField('`f.ping`', 'jogue ping pong comigo', false)
-            .addField('`f.atacar @user`', 'ataca alguém', false)
-            .addField('`f.cafuné @user`', 'faz cafuné em alguém', false)
-            .addField(
-                '`f.pensando <mensagem> ou @user`',
-                'demonstre que você está pensando em alguém ou em alguma coisa!',
-                false
-            )
-            .addField('`f.slap @user`', 'Estapeie alguém!', false)
-            .addField('`f.cake @user`', 'Dê um bolo para alguém!')
-            .addField('`f.bite @user`', 'morde alguém!', false)
-            .addField('`f.sleepy`', 'Demonstre que está com sono', false)
-            .addField('`f.desviar`', 'Desvie de algo', false)
-            .addField('`f.fugir @user`', 'Fugir de alguém', false);
-
+            .addField(':police_officer: | Moderação', modCommands)
+            .addField(':smile: | Diversão', funCommands)
+            .addField(':star: | Extras', extrasCommands)
+            .setFooter(`Lista de comandos - Chika | ${totalCommands} comandos`);
         return message.channel.send(messageEmbed);
     },
 };
