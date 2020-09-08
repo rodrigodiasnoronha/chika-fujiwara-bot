@@ -7,26 +7,43 @@ export const ban: Command = {
     aliases: ['ban', 'banir'],
     args: ['@user'],
     async execute(client: Client, message: Message, args: Array<string>) {
-        return message.reply(
-            'este comando ainda está em fase de desenvolvimento pelo meu senpai.'
+        const userHasNotPermission = !message.member?.hasPermission(
+            'BAN_MEMBERS',
+            { checkAdmin: true, checkOwner: true }
         );
-        const user = message.mentions.users.first();
-        const banReason = args.join(' ');
 
-        if (!user)
-            message.channel.send(
-                'é preciso mencionar um usuário para usar este comando.'
+        if (userHasNotPermission) {
+            return message.reply(
+                'você não possui permissão para banir usuários.'
             );
+        }
 
-        if (user === message.author)
-            message.channel.send('você não pode banir você mesmo');
+        const user = message.mentions.users.first();
+        const banReason = args.slice(1).join(' ');
 
-        if (!banReason)
-            message.channel.send('você precisa especificar um motivo de ban');
+        if (!user || !banReason) {
+            return message.reply(
+                'você precisa marcar um usuário e o motivo do ban.'
+            );
+        }
 
-        message.guild?.me
-            ?.ban()
-            .then(() => message.channel.send('usuáiro banido'))
-            .catch(console.log);
+        const userIsBannable = message.guild?.member(user as UserResolvable)
+            ?.bannable;
+
+        if (!userIsBannable) {
+            return message.reply(
+                'você não possui permissão para banir este usuário.'
+            );
+        }
+
+        try {
+            await message.guild
+                ?.member(user as UserResolvable)
+                ?.ban({ reason: banReason });
+
+            return message.reply('usuário banido.');
+        } catch (err) {
+            return message.reply('ocorreu um erro ao banir o usuário.');
+        }
     },
 };

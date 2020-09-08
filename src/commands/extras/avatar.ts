@@ -1,6 +1,6 @@
 import { Command } from '../../types';
 import { executionAsyncResource } from 'async_hooks';
-import { Client, Message } from 'discord.js';
+import { Client, Message, MessageEmbed } from 'discord.js';
 
 export const avatar: Command = {
     name: 'Avatar',
@@ -20,6 +20,13 @@ export const avatar: Command = {
             ? user.avatarURL({ format: 'jpg', size: 1024 })
             : message.author.avatarURL({ format: 'jpg', size: 1024 });
 
-        return message.channel.send(avatarUrl);
+        if (!avatarUrl) {
+            return message.reply('não encontrei a foto de perfil.');
+        }
+
+        const messageEmbed = new MessageEmbed()
+            .setImage(avatarUrl)
+            .setFooter(`Solicitado por ${message.author.username}`);
+        return message.channel.send(messageEmbed);
     },
 };
