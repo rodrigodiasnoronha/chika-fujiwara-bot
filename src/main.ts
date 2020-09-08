@@ -112,6 +112,30 @@ client.on('message', (message) => {
         return botCommands.funny.runaway.execute(client, message, args);
     }
 
+    // Comandos de moderação
+
+    if (botCommands.moderation.ban.aliases.includes(command)) {
+        return botCommands.moderation.ban.execute(client, message, args);
+    }
+
+    if (botCommands.moderation.kick.aliases.includes(command)) {
+        return botCommands.moderation.kick.execute(client, message, args);
+    }
+
+    if (botCommands.moderation.prune.aliases.includes(command)) {
+        return botCommands.moderation.prune.execute(client, message, args);
+    }
+
+    /**
+     *
+     * Comandos extras
+     *
+     */
+
+    if (botCommands.extras.avatar.aliases.includes(command)) {
+        return botCommands.extras.avatar.execute(client, message, args);
+    }
+
     /**
      *
      * Comandos de suporte

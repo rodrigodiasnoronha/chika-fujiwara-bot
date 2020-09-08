@@ -21,9 +21,22 @@ import { runaway } from './funny/runaway';
 // help commands
 import { helper } from './help/helper';
 
+// moderation commands
+import { ban } from './moderation/ban';
+import { kick } from './moderation/kick';
+import { prune } from './moderation/prune';
+
+// extras commands
+import { avatar } from './extras/avatar';
+
 export default {
     help: {
         helper,
+    },
+    moderation: {
+        ban,
+        kick,
+        prune,
     },
     funny: {
         attack,
@@ -44,5 +57,8 @@ export default {
         slap,
         sleepy,
         thinking,
+    },
+    extras: {
+        avatar,
     },
 };
