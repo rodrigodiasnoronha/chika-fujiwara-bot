@@ -41,4 +41,44 @@ export const presences: Array<PresenceData> = [
         status: 'dnd',
         afk: false,
     },
+    {
+        activity: {
+            name: 'BTS',
+            type: 'LISTENING',
+        },
+        status: 'online',
+        afk: false,
+    },
+    {
+        activity: {
+            name: 'Fallout 4',
+            type: 'PLAYING',
+        },
+        status: 'idle',
+        afk: false,
+    },
+    {
+        activity: {
+            name: 'Animes',
+            type: 'WATCHING',
+        },
+        status: 'dnd',
+        afk: false,
+    },
+    {
+        activity: {
+            name: 'Valorant',
+            type: 'PLAYING',
+        },
+        status: 'online',
+        afk: false,
+    },
+    {
+        activity: {
+            name: 'f.ajuda',
+            type: 'LISTENING',
+        },
+        status: 'idle',
+        afk: false,
+    },
 ];
