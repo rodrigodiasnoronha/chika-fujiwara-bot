@@ -140,6 +140,11 @@ client.on('message', (message) => {
         return botCommands.extras.userInfo.execute(client, message, args);
     }
 
+    if (botCommands.extras.profile.aliases.includes(command)) {
+        return botCommands.extras.profile.execute(client, message, args);
+    }
+
+
     /**
      *
      * Comandos de suporte

@@ -16,9 +16,7 @@ export const userInfo: Command = {
                 ? message.mentions.users.first()
                 : message.author;
 
-            if (!user) {
-                return message.reply('usuário não encontrado.');
-            }
+            if (!user) return message.reply('usuário não encontrado.');
 
             const userImage = user.avatarURL() || user.defaultAvatarURL;
             const userCreatedAt = moment(user.createdAt).format('LLLL');

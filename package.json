@@ -7,7 +7,7 @@
         "test": "echo \"Error: no test specified\" && exit 1",
         "dev:start": "ts-node-dev src/main.ts",
         "build": "tsc",
-        "start": "node build/main.js"
+        "start": "pm2 start build/main.js"
     },
     "keywords": [],
     "author": "",
@@ -15,8 +15,8 @@
     "dependencies": {
         "discord.js": "^12.3.1",
         "dotenv": "^8.2.0",
-        "jimp": "^0.16.1",
-        "moment": "^2.27.0"
+        "moment": "^2.27.0",
+        "pm2": "^4.4.1"
     },
     "devDependencies": {
         "@types/dotenv": "^8.2.0",
