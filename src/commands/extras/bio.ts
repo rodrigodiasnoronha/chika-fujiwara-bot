@@ -33,7 +33,7 @@ export const bio: Command = {
             }
 
             return message.channel.send(
-                ':white_check_mark: biografia alterada com sucesso.'
+                ':white_check_mark: Biografia alterada com sucesso.'
             );
         } catch (err) {
             return message.reply('ocorreu um erro ao alterar a biografia.');

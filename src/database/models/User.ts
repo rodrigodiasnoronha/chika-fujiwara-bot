@@ -16,6 +16,10 @@ const userSchema = new Schema(
             type: String,
             default: 'Hi there!',
         },
+        locale: {
+            type: String,
+            default: '',
+        },
     },
     { timestamps: true }
 );

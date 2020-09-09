@@ -150,6 +150,10 @@ client.on('message', async (message) => {
         return botCommands.extras.bio.execute(client, message, args);
     }
 
+    if (botCommands.extras.locale.aliases.includes(command)) {
+        return botCommands.extras.locale.execute(client, message, args);
+    }
+
     /**
      *
      * Comandos de suporte

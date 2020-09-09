@@ -18,4 +18,5 @@ interface UserModel extends Document {
     user_discord_id: string;
     money: number;
     bio: string;
+    locale?: string;
 }

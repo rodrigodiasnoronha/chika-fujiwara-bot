@@ -25,7 +25,13 @@ export const helper: Command = {
             '`f.desviar`',
             '`f.fugir`',
         ],
-        extras: ['`f.avatar`', '`f.userinfo`', '`f.perfil`', '`f.bio`'],
+        extras: [
+            '`f.avatar`',
+            '`f.userinfo`',
+            '`f.perfil`',
+            '`f.bio`',
+            '`f.local`',
+        ],
     },
 
     execute(client: Client, message: Message, args: Array<string>) {

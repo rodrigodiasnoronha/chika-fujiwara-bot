@@ -5,36 +5,48 @@ import { User } from '../../database/models/User';
 export const profile: Command = {
     name: 'Profile',
     description: 'Veja seu perfil.',
-    aliases: ['perfil', 'profile', 'eu'],
+    aliases: ['perfil', 'profile'],
     args: [],
 
     async execute(client: Client, message: Message, args: Array<string>) {
-        const userImage = message.author.avatarURL()
-            ? message.author.avatarURL()
-            : message.author.defaultAvatarURL;
+        let userTarget = message.mentions.users.size
+            ? message.mentions.users.first()
+            : message.author;
 
-        if (!userImage)
-            return message.reply('este usuário não tem imagem de perfil');
+        if (!userTarget)
+            return message.channel.send(':x: Usuário não encontrado.');
+
+        const userImage = userTarget.avatarURL() || userTarget.defaultAvatarURL;
 
         try {
-            let user = await User.findOne({
-                user_discord_id: message.author.id,
+            let userInfo = await User.findOne({
+                user_discord_id: userTarget.id,
             });
 
-            if (!user) {
-                user = await User.create({
-                    user_discord_id: message.author.id,
-                    bio: '',
+            if (!userInfo) {
+                userInfo = await User.create({
+                    user_discord_id: userTarget.id,
                     money: 0,
+                    bio: '',
                 });
             }
 
             const messageEmbed = new MessageEmbed()
-                .setTitle(`Perfil de ${message.author.username}`)
-                .setDescription(`**Biografia:** ${user.bio || 'Indefinida'}`)
+                .setTitle(`Perfil de ${userTarget.username}`)
+                .setDescription(
+                    `**Biografia:** ${userInfo.bio || 'Indefinida'}`
+                )
                 .setThumbnail(userImage)
                 .addField('Dinheiro:', `R$${(0).toFixed(2)}`, true)
+                .addField('Localização:', userInfo.locale || 'Desconhecida')
                 .setFooter(`Solicitado por ${message.author.username}`);
+
+            if (
+                message.author.lastMessage &&
+                message.author.lastMessage.deletable
+            ) {
+                await message.author.lastMessage.delete();
+            }
 
             return message.reply(messageEmbed);
         } catch (err) {
