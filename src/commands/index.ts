@@ -28,6 +28,7 @@ import { prune } from './moderation/prune';
 
 // extras commands
 import { avatar } from './extras/avatar';
+import { userInfo } from './extras/userinfo';
 
 export default {
     help: {
@@ -60,5 +61,6 @@ export default {
     },
     extras: {
         avatar,
+        userInfo,
     },
 };
