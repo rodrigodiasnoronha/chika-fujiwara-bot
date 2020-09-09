@@ -1,12 +1,13 @@
 import 'dotenv/config';
 import { Client } from 'discord.js';
+import * as database from './database';
 import botCommands from './commands';
 import { presences } from './utils/presences';
 
 const client = new Client();
 const prefix = process.env.BOT_PREFIX || 'f.';
 
-client.on('ready', () => {
+client.on('ready', async () => {
     const presence = presences[Math.floor(Math.random() * presences.length)];
     client.user?.setPresence(presence);
 
@@ -16,13 +17,14 @@ client.on('ready', () => {
         client.user?.setPresence(presence);
     }, 1000 * 60 * 60 * 1); // Executado cada 1 horas
 
+    await database.connect();
     console.log('I am alive!"');
 });
 
 client.on('error', console.error);
 client.on('warn', console.warn);
 
-client.on('message', (message) => {
+client.on('message', async (message) => {
     if (!message.content.startsWith(prefix) || message.author.bot) return;
 
     /**
@@ -142,6 +144,10 @@ client.on('message', (message) => {
 
     if (botCommands.extras.profile.aliases.includes(command)) {
         return botCommands.extras.profile.execute(client, message, args);
+    }
+
+    if (botCommands.extras.bio.aliases.includes(command)) {
+        return botCommands.extras.bio.execute(client, message, args);
     }
 
     /**

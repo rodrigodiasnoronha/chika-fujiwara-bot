@@ -30,6 +30,7 @@ import { prune } from './moderation/prune';
 import { avatar } from './extras/avatar';
 import { userInfo } from './extras/userinfo';
 import { profile } from './extras/profile';
+import { bio } from './extras/bio';
 
 export default {
     help: {
@@ -64,5 +65,6 @@ export default {
         avatar,
         userInfo,
         profile,
+        bio,
     },
 };

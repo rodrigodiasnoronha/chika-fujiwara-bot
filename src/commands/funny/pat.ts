@@ -40,7 +40,7 @@ export const pat: Command = {
         const messageEmbed = new MessageEmbed().setImage(gif);
 
         return message.channel.send(
-            `<@${message.author}> fez cafuné em <${user}>! - ${reply}`,
+            `<@${message.author}> fez cafuné em <@${user}>! - ${reply}`,
             messageEmbed
         );
     },
