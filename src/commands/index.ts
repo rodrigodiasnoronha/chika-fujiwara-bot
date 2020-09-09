@@ -32,6 +32,7 @@ import { userInfo } from './extras/userinfo';
 import { profile } from './extras/profile';
 import { bio } from './extras/bio';
 import { locale } from './extras/locale';
+import { support } from './extras/support';
 
 export default {
     help: {
@@ -68,5 +69,6 @@ export default {
         profile,
         bio,
         locale,
+        support,
     },
 };

@@ -154,6 +154,10 @@ client.on('message', async (message) => {
         return botCommands.extras.locale.execute(client, message, args);
     }
 
+    if (botCommands.extras.support.aliases.includes(command)) {
+        return botCommands.extras.support.execute(client, message, args);
+    }
+
     /**
      *
      * Comandos de suporte
@@ -163,6 +167,10 @@ client.on('message', async (message) => {
     if (botCommands.help.helper.aliases.includes(command)) {
         return botCommands.help.helper.execute(client, message, args);
     }
+
+    return message.reply(
+        'eu não entendi o que você quis dizer. Digite `f.ajuda` para ver meus comandos.'
+    );
 });
 
 const token = process.env.MY_APP_CLIENT_TOKEN;

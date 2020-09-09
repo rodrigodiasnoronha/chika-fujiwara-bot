@@ -31,6 +31,7 @@ export const helper: Command = {
             '`f.perfil`',
             '`f.bio`',
             '`f.local`',
+            '`f.suporte`',
         ],
     },
 
