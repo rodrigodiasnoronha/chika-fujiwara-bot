@@ -14,7 +14,7 @@ client.on('ready', () => {
         const presence =
             presences[Math.floor(Math.random() * presences.length)];
         client.user?.setPresence(presence);
-    }, 1000 * 60 * 60 * 4); // Executado cada 4 horas
+    }, 1000 * 60 * 60 * 1); // Executado cada 1 horas
 
     console.log('I am alive!"');
 });
@@ -134,6 +134,14 @@ client.on('message', (message) => {
 
     if (botCommands.extras.avatar.aliases.includes(command)) {
         return botCommands.extras.avatar.execute(client, message, args);
+    }
+
+    if (botCommands.extras.userInfo.aliases.includes(command)) {
+        return botCommands.extras.userInfo.execute(client, message, args);
+    }
+
+    if (botCommands.extras.profile.aliases.includes(command)) {
+        return botCommands.extras.profile.execute(client, message, args);
     }
 
     /**
