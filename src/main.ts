@@ -15,7 +15,7 @@ client.on('ready', async () => {
         const presence =
             presences[Math.floor(Math.random() * presences.length)];
         client.user?.setPresence(presence);
-    }, 1000 * 60 * 60 * 1); // Executado cada 1 horas
+    }, 1000 * 60 * 60 * 0.5); // Executado cada 30 minutos
 
     await database.connect();
     console.log('I am alive!"');
@@ -150,6 +150,32 @@ client.on('message', async (message) => {
         return botCommands.extras.bio.execute(client, message, args);
     }
 
+    if (botCommands.extras.locale.aliases.includes(command)) {
+        return botCommands.extras.locale.execute(client, message, args);
+    }
+
+    if (botCommands.extras.support.aliases.includes(command)) {
+        return botCommands.extras.support.execute(client, message, args);
+    }
+
+    /**
+     *
+     * Comandos de economia
+     *
+     */
+
+    if (botCommands.economy.balance.aliases.includes(command)) {
+        return botCommands.economy.balance.execute(client, message, args);
+    }
+
+    if (botCommands.economy.transfer.aliases.includes(command)) {
+        return botCommands.economy.transfer.execute(client, message, args);
+    }
+
+    if (botCommands.economy.steal.aliases.includes(command)) {
+        return botCommands.economy.steal.execute(client, message, args);
+    }
+
     /**
      *
      * Comandos de suporte
@@ -159,6 +185,10 @@ client.on('message', async (message) => {
     if (botCommands.help.helper.aliases.includes(command)) {
         return botCommands.help.helper.execute(client, message, args);
     }
+
+    return message.channel.send(
+        ':x: Comando não encontrado. Digite `f.ajuda`.'
+    );
 });
 
 const token = process.env.MY_APP_CLIENT_TOKEN;

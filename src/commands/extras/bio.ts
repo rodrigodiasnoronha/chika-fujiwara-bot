@@ -25,7 +25,7 @@ export const bio: Command = {
                 user = await User.create({
                     user_discord_id: message.author.id,
                     bio: biograph,
-                    money: 0,
+                    balance: 0,
                 });
             } else {
                 user.bio = biograph;
@@ -33,7 +33,7 @@ export const bio: Command = {
             }
 
             return message.channel.send(
-                ':white_check_mark: biografia alterada com sucesso.'
+                ':white_check_mark: Biografia alterada com sucesso.'
             );
         } catch (err) {
             return message.reply('ocorreu um erro ao alterar a biografia.');

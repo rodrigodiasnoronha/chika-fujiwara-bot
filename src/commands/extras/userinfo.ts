@@ -3,6 +3,7 @@ import { Command } from '../../types';
 import moment from 'moment';
 import 'moment/locale/pt-br';
 import { measureMemory } from 'vm';
+import { User } from '../../database/models/User';
 moment.locale('pt-br');
 
 export const userInfo: Command = {
@@ -21,10 +22,19 @@ export const userInfo: Command = {
             const userImage = user.avatarURL() || user.defaultAvatarURL;
             const userCreatedAt = moment(user.createdAt).format('LLLL');
 
+            let userInfo = await User.findOne({ user_discord_id: user.id });
+            if (!userInfo) {
+                userInfo = await User.create({
+                    user_discord_id: user.id,
+                    balance: 0,
+                    bio: '',
+                });
+            }
+
             const messageEmbed = new MessageEmbed()
                 .setTitle(`${user.username} - detalhes`)
                 .addField('ID:', user.id, false)
-                .addField('Localidade:', user.locale || 'Desconhecido')
+                .addField('Localização:', userInfo.locale || 'Desconhecida')
                 .addField('Entrou no Discord em:', userCreatedAt)
                 .addField(
                     'Última mensagem:',

@@ -31,6 +31,13 @@ import { avatar } from './extras/avatar';
 import { userInfo } from './extras/userinfo';
 import { profile } from './extras/profile';
 import { bio } from './extras/bio';
+import { locale } from './extras/locale';
+import { support } from './extras/support';
+
+// economy commands
+import { balance } from './economy/balance';
+import { transfer } from './economy/transfer';
+import { steal } from './economy/steal';
 
 export default {
     help: {
@@ -40,6 +47,11 @@ export default {
         ban,
         kick,
         prune,
+    },
+    economy: {
+        balance,
+        transfer,
+        steal,
     },
     funny: {
         attack,
@@ -66,5 +78,7 @@ export default {
         userInfo,
         profile,
         bio,
+        locale,
+        support,
     },
 };
