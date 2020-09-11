@@ -8,7 +8,7 @@ const userSchema = new Schema(
             required: true,
             unique: true,
         },
-        money: {
+        balance: {
             type: Number,
             default: 0,
         },
@@ -19,6 +19,13 @@ const userSchema = new Schema(
         locale: {
             type: String,
             default: '',
+        },
+        user_items: {
+            type: [Schema.Types.ObjectId],
+            ref: 'UserItems',
+        },
+        last_stole_in: {
+            type: Date,
         },
     },
     { timestamps: true }

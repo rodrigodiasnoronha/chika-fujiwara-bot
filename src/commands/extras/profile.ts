@@ -26,7 +26,7 @@ export const profile: Command = {
             if (!userInfo) {
                 userInfo = await User.create({
                     user_discord_id: userTarget.id,
-                    money: 0,
+                    balance: 0,
                     bio: '',
                 });
             }

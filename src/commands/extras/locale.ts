@@ -21,7 +21,7 @@ export const locale: Command = {
             if (!user) {
                 user = await User.create({
                     user_discord_id: message.author.id,
-                    money: 0,
+                    balance: 0,
                     bio: '',
                 });
             }

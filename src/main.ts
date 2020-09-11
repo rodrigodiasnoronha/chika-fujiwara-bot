@@ -15,7 +15,7 @@ client.on('ready', async () => {
         const presence =
             presences[Math.floor(Math.random() * presences.length)];
         client.user?.setPresence(presence);
-    }, 1000 * 60 * 60 * 1); // Executado cada 1 horas
+    }, 1000 * 60 * 60 * 0.5); // Executado cada 30 minutos
 
     await database.connect();
     console.log('I am alive!"');
@@ -160,6 +160,24 @@ client.on('message', async (message) => {
 
     /**
      *
+     * Comandos de economia
+     *
+     */
+
+    if (botCommands.economy.balance.aliases.includes(command)) {
+        return botCommands.economy.balance.execute(client, message, args);
+    }
+
+    if (botCommands.economy.transfer.aliases.includes(command)) {
+        return botCommands.economy.transfer.execute(client, message, args);
+    }
+
+    if (botCommands.economy.steal.aliases.includes(command)) {
+        return botCommands.economy.steal.execute(client, message, args);
+    }
+
+    /**
+     *
      * Comandos de suporte
      *
      */
@@ -168,8 +186,8 @@ client.on('message', async (message) => {
         return botCommands.help.helper.execute(client, message, args);
     }
 
-    return message.reply(
-        'eu não entendi o que você quis dizer. Digite `f.ajuda` para ver meus comandos.'
+    return message.channel.send(
+        ':x: Comando não encontrado. Digite `f.ajuda`.'
     );
 });
 

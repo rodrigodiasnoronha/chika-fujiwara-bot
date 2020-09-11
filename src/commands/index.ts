@@ -34,6 +34,11 @@ import { bio } from './extras/bio';
 import { locale } from './extras/locale';
 import { support } from './extras/support';
 
+// economy commands
+import { balance } from './economy/balance';
+import { transfer } from './economy/transfer';
+import { steal } from './economy/steal';
+
 export default {
     help: {
         helper,
@@ -42,6 +47,11 @@ export default {
         ban,
         kick,
         prune,
+    },
+    economy: {
+        balance,
+        transfer,
+        steal,
     },
     funny: {
         attack,

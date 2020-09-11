@@ -25,7 +25,7 @@ export const bio: Command = {
                 user = await User.create({
                     user_discord_id: message.author.id,
                     bio: biograph,
-                    money: 0,
+                    balance: 0,
                 });
             } else {
                 user.bio = biograph;

@@ -1,7 +1,7 @@
 import { Client, Message } from 'discord.js';
 import { Document } from 'mongoose';
 
-export interface Command {
+interface Command {
     name: string;
     description: string;
     aliases: Array<string>;
@@ -16,7 +16,19 @@ interface Execute {
 
 interface UserModel extends Document {
     user_discord_id: string;
-    money: number;
+    balance: number;
     bio: string;
+    last_stole_in?: Date;
     locale?: string;
+}
+
+interface UserItemsModel extends Document {
+    user_discord_id: string;
+    item_id: string;
+    amount: number;
+}
+
+interface CurrencyShopModel extends Document {
+    name: string;
+    cost: number;
 }
