@@ -186,8 +186,11 @@ client.on('message', async (message) => {
         return botCommands.help.helper.execute(client, message, args);
     }
 
+    const errorEmoji = client.emojis.cache.find(
+        (emoji) => emoji.name === 'errado'
+    );
     return message.channel.send(
-        ':x: Comando não encontrado. Digite `f.ajuda`.'
+        `<:errado:${errorEmoji}> Comando não encontrado. Digite \`f.ajuda\`.`
     );
 });
 

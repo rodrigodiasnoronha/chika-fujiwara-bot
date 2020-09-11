@@ -50,6 +50,9 @@ export const helper: Command = {
 
         const messageEmbed = new MessageEmbed()
             .setTitle('Ajuda - Lista de comandos')
+            .setThumbnail(
+                'https://cdn.discordapp.com/emojis/753988417091797152.png'
+            )
             .setDescription('Abaixo está uma lista com todos os meus comandos.')
             .addField(':police_officer: | Moderação', modCommands)
             .addField(':moneybag: | Economia', economyCommands)

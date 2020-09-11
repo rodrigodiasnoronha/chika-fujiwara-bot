@@ -1,6 +1,11 @@
 import { Command } from '../../types';
 import { executionAsyncResource } from 'async_hooks';
-import { Client, Message, MessageEmbed } from 'discord.js';
+import {
+    Client,
+    Message,
+    MessageEmbed,
+    GuildEmojiRoleManager,
+} from 'discord.js';
 
 export const avatar: Command = {
     name: 'Avatar',
@@ -8,20 +13,23 @@ export const avatar: Command = {
     aliases: ['avatar'],
     args: ['@user'],
     async execute(client: Client, message: Message, args: Array<string>) {
-        const user = message.mentions.users.first();
+        const user = message.mentions.users.size
+            ? message.mentions.users.first()
+            : message.author;
+        const errorEmoji = client.emojis.cache.find(
+            (emoji) => emoji.name === 'errado'
+        );
 
-        if (args.length && !user) {
-            return message.reply(
-                'marque algum usuário para ver sua foto de perfil.'
-            );
-        }
+        if (!user) return;
 
         const avatarUrl = user
             ? user.avatarURL({ format: 'jpg', size: 1024 })
             : message.author.avatarURL({ format: 'jpg', size: 1024 });
 
         if (!avatarUrl) {
-            return message.reply('não encontrei a foto de perfil.');
+            return message.channel.send(
+                `<:errado:${errorEmoji}> Foto de perfil não encontrada.`
+            );
         }
 
         const messageEmbed = new MessageEmbed()

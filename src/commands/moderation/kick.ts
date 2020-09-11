@@ -10,14 +10,21 @@ export const kick: Command = {
         const user = message.mentions.users.first();
         const kickReason = args.slice(1).join(' ');
 
+        const errorEmoji = client.emojis.cache.find(
+            (emoji) => emoji.name === 'errado'
+        );
+        const okEmoji = client.emojis.cache.find(
+            (emoji) => emoji.name === 'certo'
+        );
+
         if (!message.member?.hasPermission('KICK_MEMBERS'))
-            return message.reply(
-                'você não possui permissão para expulsar usuários.'
+            return message.channel.send(
+                `<:errado:${errorEmoji}> Você não possui permissão para expulsar usuários.`
             );
 
         if (!user)
-            return message.reply(
-                'você precisa mencionar o usuário a ser expulso.'
+            return message.channel.send(
+                `<:errado:${errorEmoji}> Você precisa mencionar o usuário a ser expulso.`
             );
 
         if (user === message.author)
@@ -27,12 +34,14 @@ export const kick: Command = {
         const isKickable = message.guild?.member(user as UserResolvable)
             ?.kickable;
         if (!isKickable)
-            return message.reply(
-                'você não possui permissão para expulsar este usuário.'
+            return message.channel.send(
+                `<:errado:${errorEmoji}> Você não possui permissão para expulsar este usuário.`
             );
 
         if (!kickReason)
-            return message.reply('você precisa digitar o motivo da expulsão.');
+            return message.channel.send(
+                `<:errado:${errorEmoji}> Você precisa digitar o motivo da expulsão.`
+            );
 
         // Expulsa o usuário
         try {
@@ -40,7 +49,9 @@ export const kick: Command = {
                 ?.member(user as UserResolvable)
                 ?.kick(kickReason);
         } catch (err) {
-            return message.reply('ocorreu um erro ao expulsar o usuário');
+            return message.channel.send(
+                `<:errado:${errorEmoji}> Ocorreu um erro ao expulsar o usuário`
+            );
         }
     },
 };

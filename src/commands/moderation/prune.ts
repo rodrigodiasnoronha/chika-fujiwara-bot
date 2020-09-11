@@ -8,7 +8,9 @@ export const prune: Command = {
     aliases: ['prune'],
     args: ['quantidade_mensagens_apagar'],
     async execute(client: Client, message: Message, args: Array<string>) {
-        return message.channel.send('comando em dev');
+        return message.channel.send(
+            'Este comando não existe. Digite `f.ajuda` para ver meus comandos.'
+        );
         const messageDropCounter = args[0];
 
         if (messageDropCounter) {
