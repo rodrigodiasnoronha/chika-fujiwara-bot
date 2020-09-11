@@ -12,12 +12,19 @@ export const userInfo: Command = {
     aliases: ['userinfo'],
     args: ['@user'],
     async execute(client: Client, message: Message, args: Array<string>) {
+        const errorEmoji = client.emojis.cache.find(
+            (emoji) => emoji.name === 'errado'
+        );
+        const localeEmoji = client.emojis.cache.find(
+            (emoji) => emoji.name === 'local'
+        );
+
         try {
             const user = message.mentions.users.size
                 ? message.mentions.users.first()
                 : message.author;
 
-            if (!user) return message.reply('usuário não encontrado.');
+            if (!user) return;
 
             const userImage = user.avatarURL() || user.defaultAvatarURL;
             const userCreatedAt = moment(user.createdAt).format('LLLL');
@@ -33,21 +40,23 @@ export const userInfo: Command = {
 
             const messageEmbed = new MessageEmbed()
                 .setTitle(`${user.username} - detalhes`)
-                .addField('ID:', user.id, false)
-                .addField('Localização:', userInfo.locale || 'Desconhecida')
-                .addField('Entrou no Discord em:', userCreatedAt)
+                .addField(':mag_right: ID:', user.id, false)
                 .addField(
-                    'Última mensagem:',
+                    `<:local:${localeEmoji}> Localização`,
+                    userInfo.locale || 'Desconhecida'
+                )
+                .addField(':paperclip: Entrou no Discord em:', userCreatedAt)
+                .addField(
+                    ':book: Última mensagem:',
                     user.lastMessage || 'Desconhecida'
                 )
                 .setThumbnail(userImage)
                 .setFooter(`Solicitado por ${message.author.username}.`);
 
-            await user.lastMessage?.delete();
             return message.channel.send(messageEmbed);
         } catch (err) {
-            return message.reply(
-                'ocorreu um erro ao mostrar os detalhes do usuário.'
+            return message.channel.send(
+                `<:errado:${errorEmoji}> Ocorreu um erro ao mostrar os detalhes do usuário.`
             );
         }
     },

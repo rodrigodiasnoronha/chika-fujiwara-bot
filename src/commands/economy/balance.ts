@@ -8,12 +8,19 @@ export const balance: Command = {
     aliases: ['balance', 'money', 'dinheiro', 'carteira', 'yen', 'saldo'],
     args: [],
     async execute(client: Client, message: Message, args: Array<string>) {
+        const errorEmoji = client.emojis.cache.find(
+            (emoji) => emoji.name === 'errado'
+        );
+
         try {
             const userTarget = message.mentions.users.size
                 ? message.mentions.users.first()
                 : message.author;
 
-            if (!userTarget) return message.reply('usuário não encontrado.');
+            if (!userTarget)
+                return message.channel.send(
+                    `<:errado:${errorEmoji}> Usuário não encontrado.`
+                );
 
             let user = await User.findOne({ user_discord_id: userTarget.id });
 
@@ -45,9 +52,6 @@ export const balance: Command = {
 
             return message.channel.send(messageEmbed);
         } catch (err) {
-            const errorEmoji = client.emojis.cache.find(
-                (emoji) => emoji.name === 'errado'
-            );
             return message.channel.send(
                 `<:errado:${errorEmoji}> ocorreu um erro ao mostrar saldo.`
             );

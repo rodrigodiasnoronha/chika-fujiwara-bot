@@ -8,9 +8,17 @@ export const bio: Command = {
     aliases: ['biografia', 'bio'],
     args: ['bio'],
     async execute(client: Client, message: Message, args: Array<string>) {
+        const errorEmoji = client.emojis.cache.find(
+            (emoji) => emoji.name === 'errado'
+        );
+
+        const okEmoji = client.emojis.cache.find(
+            (emoji) => emoji.name === 'certo'
+        );
+
         if (!args.length) {
-            return message.reply(
-                'você precisa digitar algo para mudar sua biografia.'
+            return message.channel.send(
+                `<:errado:${errorEmoji}> Digite sua biografia.`
             );
         }
 
@@ -33,10 +41,12 @@ export const bio: Command = {
             }
 
             return message.channel.send(
-                ':white_check_mark: Biografia alterada com sucesso.'
+                `<:certo:${okEmoji}> Biografia alterada com sucesso.`
             );
         } catch (err) {
-            return message.reply('ocorreu um erro ao alterar a biografia.');
+            return message.channel.send(
+                `<:errado:${errorEmoji}> Ocorreu um erro ao alterar a biografia.`
+            );
         }
     },
 };

@@ -9,12 +9,17 @@ export const profile: Command = {
     args: [],
 
     async execute(client: Client, message: Message, args: Array<string>) {
+        const errorEmoji = client.emojis.cache.find(
+            (emoji) => emoji.name === 'errado'
+        );
         let userTarget = message.mentions.users.size
             ? message.mentions.users.first()
             : message.author;
 
         if (!userTarget)
-            return message.channel.send(':x: Usuário não encontrado.');
+            return message.channel.send(
+                `<:errado:${errorEmoji}> Usuário não encontrado.`
+            );
 
         const userImage = userTarget.avatarURL() || userTarget.defaultAvatarURL;
 
@@ -37,20 +42,15 @@ export const profile: Command = {
                     `**Biografia:** ${userInfo.bio || 'Indefinida'}`
                 )
                 .setThumbnail(userImage)
-                .addField('Dinheiro:', `R$${(0).toFixed(2)}`, true)
+                .addField('Dinheiro:', `R$${userInfo.balance.toFixed(2)}`, true)
                 .addField('Localização:', userInfo.locale || 'Desconhecida')
                 .setFooter(`Solicitado por ${message.author.username}`);
 
-            if (
-                message.author.lastMessage &&
-                message.author.lastMessage.deletable
-            ) {
-                await message.author.lastMessage.delete();
-            }
-
             return message.reply(messageEmbed);
         } catch (err) {
-            return message.reply('ocorreu um erro ao mostrar o perfil.');
+            return message.channel.send(
+                `<:errado:${errorEmoji}> Ocorreu um erro ao mostrar o perfil.`
+            );
         }
     },
 };
