@@ -7,7 +7,7 @@ export const helper: Command = {
     aliases: ['help', 'ajuda', ' helper'],
     args: [],
     commands: {
-        moderation: ['`k.kick`', '`k.ban`'],
+        moderation: ['`k.kick`', '`k.ban`', '`f.mute`', '`f.unmute`'],
         economy: ['`f.saldo`', '`f.pagar`'],
         funny: [
             '`f.beijar`',
