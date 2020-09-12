@@ -25,6 +25,8 @@ import { helper } from './help/helper';
 import { ban } from './moderation/ban';
 import { kick } from './moderation/kick';
 import { prune } from './moderation/prune';
+import { mute } from './moderation/mute';
+import { unmute } from './moderation/unmute';
 
 // extras commands
 import { avatar } from './extras/avatar';
@@ -47,6 +49,8 @@ export default {
         ban,
         kick,
         prune,
+        mute,
+        unmute,
     },
     economy: {
         balance,

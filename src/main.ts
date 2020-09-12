@@ -1,5 +1,5 @@
 import 'dotenv/config';
-import { Client } from 'discord.js';
+import { Client, Collection } from 'discord.js';
 import * as database from './database';
 import botCommands from './commands';
 import { presences } from './utils/presences';
@@ -126,6 +126,14 @@ client.on('message', async (message) => {
 
     if (botCommands.moderation.prune.aliases.includes(command)) {
         return botCommands.moderation.prune.execute(client, message, args);
+    }
+
+    if (botCommands.moderation.mute.aliases.includes(command)) {
+        return botCommands.moderation.mute.execute(client, message, args);
+    }
+
+    if (botCommands.moderation.unmute.aliases.includes(command)) {
+        return botCommands.moderation.unmute.execute(client, message, args);
     }
 
     /**
