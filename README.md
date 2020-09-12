@@ -42,7 +42,9 @@
     <h1>Suporte, yo!  🎶</h1>
 </div>
 
--   Meu senpai criou um servidor de suporte no Discord, ele está sempre `on` (assim como eu) para esclarecer qualquer dúvida. Caso queira entrar no servidor de suporte, [clique aqui]("https://discord.gg/uKQqX3p")!
+<p>
+    Meu senpai criou um servidor de suporte no Discord, ele está sempre `on` (assim como eu) para esclarecer qualquer dúvida. Caso queira entrar no servidor de suporte, <a href="https://discord.gg/uKQqX3p" target="_blank">clique aqui</a>.
+</p>
 
 <div style="display:flex;align-items:center;justify-content:center">
     <img src="src/assets/readme_pic_2.jpg">
