@@ -38,11 +38,17 @@ export const balance: Command = {
                 (emoji) => emoji.name === 'money'
             );
 
+            const userBalanceFormated = new Intl.NumberFormat('pt-BR', {
+                style: 'currency',
+                currency: 'BRL',
+                minimumFractionDigits: 2,
+            }).format(user.balance);
+            console.log(userBalanceFormated);
             const messageEmbed = new MessageEmbed()
                 .setTitle(`Saldo - ${userTarget.username}`)
                 .setDescription(
                     `
-                    <:money:${moneyEmoji}> Saldo | ${user.balance.toFixed(2)} 
+                    <:money:${moneyEmoji}> Saldo | ${userBalanceFormated} 
                 `
                 )
                 .setThumbnail(

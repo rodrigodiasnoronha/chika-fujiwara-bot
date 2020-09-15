@@ -8,26 +8,38 @@ export const transfer: Command = {
     aliases: ['transfer', 'pay', 'pagar', 'transferir'],
     args: ['<valor> @user'],
     async execute(client: Client, message: Message, args: Array<string>) {
+        const errorEmoji = client.emojis.cache.find(
+            (emoji) => emoji.name === 'errado'
+        );
+
+        const okEmoji = client.emojis.cache.find(
+            (emoji) => emoji.name === 'certo'
+        );
+
         try {
             let valueToTransfer = parseInt(args[0]);
             const userToBePaidRef = message.mentions.users.first();
             const payerRef = message.author;
 
             if (!userToBePaidRef)
-                return message.reply(
-                    'você precisa mencionar o usuário a ser pago.'
+                return message.channel.send(
+                    `<:errado:${errorEmoji}> Você precisa mencionar o usuário a ser pago.`
                 );
 
             if (!valueToTransfer || isNaN(valueToTransfer))
-                return message.reply('você precisa digitar um valor válido.');
+                return message.channel.send(
+                    `<:errado:${errorEmoji}> Você precisa digitar um valor válido`
+                );
 
-            if (valueToTransfer < 100)
-                return message.reply(
-                    'o valor mínimo de transferência é de 100'
+            if (valueToTransfer < 50)
+                return message.channel.send(
+                    `<:errado:${errorEmoji}> O valor mínimo de transferência é de R$50.00`
                 );
 
             if (userToBePaidRef.bot)
-                return message.reply('você não pode pagar um BOT.');
+                return message.channel.send(
+                    `<:errado:${errorEmoji}> Baka! Você não pode pagar um BOT. `
+                );
 
             if (userToBePaidRef.id === payerRef.id)
                 return message.channel.send(
@@ -63,7 +75,7 @@ export const transfer: Command = {
             // verificamos se o usuário pode pagar tal valor
             if (valueToTransfer > payerBalance.balance)
                 return message.reply(
-                    'você não possui saldo suficiente para fazer esta transação.'
+                    `<:errado:${errorEmoji}> Você não possui saldo suficiente para fazer esta transação.`
                 );
 
             // Retira o saldo do pagador e transfere para a conta da pessoa a ser paga
@@ -75,10 +87,12 @@ export const transfer: Command = {
             await userToBePaidBalance.save();
 
             return message.channel.send(
-                ':white_check_mark: Transferência bem sucedida.'
+                `<:certo:${okEmoji}> Transferência bem sucedida.`
             );
         } catch (err) {
-            return message.reply('ocorreu um erro ao transferir a quantia.');
+            return message.reply(
+                `<:errado:${errorEmoji}> Ocorreu um erro ao transferir a quantia.`
+            );
         }
     },
 };

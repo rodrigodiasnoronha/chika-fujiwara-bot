@@ -33,6 +33,8 @@ export const helper: Command = {
             '`f.bio`',
             '`f.local`',
             '`f.suporte`',
+            '`f.say`',
+            '`f.inverter`'
         ],
     },
 
