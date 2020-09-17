@@ -6,7 +6,7 @@
 </p>
 <div>
     <h1>
-    Me chamo Fujiwara Chika, yo! 🎶
+    Me chamo Chika Fujiwara, yo! 🎶
     <br/>
     Sou uma BOT do Discord, yo! 🎶 <br/>
     Criada para animar seu server, yo! 🎶 </h1>
