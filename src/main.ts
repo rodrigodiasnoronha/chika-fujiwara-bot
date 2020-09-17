@@ -5,7 +5,7 @@ import { onMessage } from './commands';
 import { presences } from './utils/presences';
 
 const client = new Client();
-const prefix = process.env.BOT_PREFIX || 'f.';
+const prefix = process.env.BOT_PREFIX || '.';
 
 client.on('ready', async () => {
     const presence = presences[Math.floor(Math.random() * presences.length)];
