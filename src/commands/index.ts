@@ -1,3 +1,5 @@
+import { Client, Message } from 'discord.js';
+
 // funny commands
 import { attack } from './funny/attack';
 import { cry } from './funny/cry';
@@ -42,7 +44,8 @@ import { inverse } from './extras/inverse';
 import { balance } from './economy/balance';
 import { transfer } from './economy/transfer';
 import { steal } from './economy/steal';
-import { Client, Message } from 'discord.js';
+import { daily } from './economy/daily';
+import { top } from './extras/top';
 
 // test commands
 import { dither } from './test/commands';
@@ -212,6 +215,10 @@ export const onMessage = async (
      *
      */
 
+    if (daily.aliases.includes(command)) {
+        return daily.execute(client, message, args);
+    }
+
     if (balance.aliases.includes(command)) {
         return balance.execute(client, message, args);
     }
@@ -222,6 +229,10 @@ export const onMessage = async (
 
     if (steal.aliases.includes(command)) {
         return steal.execute(client, message, args);
+    }
+
+    if (top.aliases.includes(command)) {
+        return top.execute(client, message, args);
     }
 
     /**

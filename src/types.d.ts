@@ -20,6 +20,7 @@ interface UserModel extends Document {
     bio: string;
     last_stole_in?: Date;
     locale?: string;
+    daily?: Date;
 }
 
 interface UserItemsModel extends Document {

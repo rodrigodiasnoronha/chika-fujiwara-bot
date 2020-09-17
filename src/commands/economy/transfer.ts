@@ -5,7 +5,7 @@ import { User } from '../../database/models/User';
 export const transfer: Command = {
     name: 'Transfer',
     description: 'Transfira uma quantia de dinheiro para outro usuário.',
-    aliases: ['transfer', 'pay', 'pagar', 'transferir'],
+    aliases: ['transfer', 'pay', 'pagar', 'transferir', 'tr'],
     args: ['<valor> @user'],
     async execute(client: Client, message: Message, args: Array<string>) {
         const errorEmoji = client.emojis.cache.find(

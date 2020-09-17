@@ -27,6 +27,11 @@ const userSchema = new Schema(
         last_stole_in: {
             type: Date,
         },
+        daily: {
+            type: Date,
+            required: false,
+            default: new Date(),
+        },
     },
     { timestamps: true }
 );
