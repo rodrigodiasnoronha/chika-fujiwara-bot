@@ -75,8 +75,16 @@ export const presences: Array<PresenceData> = [
     },
     {
         activity: {
-            name: 'f.ajuda',
+            name: '.ajuda',
             type: 'LISTENING',
+        },
+        status: 'idle',
+        afk: false,
+    },
+    {
+        activity: {
+            name: 'Karaokê',
+            type: 'PLAYING',
         },
         status: 'idle',
         afk: false,

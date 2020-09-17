@@ -45,6 +45,7 @@ import { balance } from './economy/balance';
 import { transfer } from './economy/transfer';
 import { steal } from './economy/steal';
 import { daily } from './economy/daily';
+import { top } from './extras/top';
 
 // test commands
 import { dither } from './test/commands';
@@ -228,6 +229,10 @@ export const onMessage = async (
 
     if (steal.aliases.includes(command)) {
         return steal.execute(client, message, args);
+    }
+
+    if (top.aliases.includes(command)) {
+        return top.execute(client, message, args);
     }
 
     /**
