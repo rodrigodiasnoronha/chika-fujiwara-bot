@@ -254,6 +254,6 @@ export const onMessage = async (
         (emoji) => emoji.name === 'errado'
     );
     return message.channel.send(
-        `<:errado:${errorEmoji}> Comando não encontrado. Digite \`f.ajuda\`.`
+        `<:errado:${errorEmoji}> Comando não encontrado. Digite \`.ajuda\`.`
     );
 };
