@@ -36,18 +36,38 @@ export const profile: Command = {
                 });
             }
 
+            let waifu: string | undefined = '';
+            if (userInfo.waifuId) {
+                const waifuDiscordRef = client.users.cache.find(
+                    (u) => u.id === userInfo!.waifuId
+                );
+
+                waifu = waifuDiscordRef?.username;
+            }
+
+            const moneyFormated = new Intl.NumberFormat('pt-BR', {
+                currency: 'BRL',
+                style: 'currency',
+                minimumFractionDigits: 2,
+            }).format(userInfo.balance);
+
             const messageEmbed = new MessageEmbed()
                 .setTitle(`Perfil de ${userTarget.username}`)
                 .setDescription(
                     `**Biografia:** ${userInfo.bio || 'Indefinida'}`
                 )
                 .setThumbnail(userImage)
-                .addField('Dinheiro:', `R$${userInfo.balance.toFixed(2)}`, true)
+                .addField('Dinheiro:', moneyFormated, true)
                 .addField('Localização:', userInfo.locale || 'Desconhecida')
+                .addField(
+                    'Estado cívil:',
+                    waifu ? `Casado com ${waifu}` : 'Abandonado'
+                )
                 .setFooter(`Solicitado por ${message.author.username}`);
 
             return message.reply(messageEmbed);
         } catch (err) {
+            console.log(err);
             return message.channel.send(
                 `<:errado:${errorEmoji}> Ocorreu um erro ao mostrar o perfil.`
             );

@@ -21,6 +21,7 @@ interface UserModel extends Document {
     last_stole_in?: Date;
     locale?: string;
     daily?: Date;
+    waifuId?: string;
 }
 
 interface UserItemsModel extends Document {

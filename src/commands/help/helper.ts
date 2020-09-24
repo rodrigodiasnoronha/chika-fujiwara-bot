@@ -35,6 +35,8 @@ export const helper: Command = {
             '`.suporte`',
             '`.say`',
             '`.inverter`',
+            '`.casar`',
+            '`.divorciar`',
         ],
     },
 
