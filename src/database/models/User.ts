@@ -32,6 +32,10 @@ const userSchema = new Schema(
             required: false,
             default: new Date(),
         },
+        waifuId: {
+            type: String,
+            required: false,
+        },
     },
     { timestamps: true }
 );
