@@ -1,5 +1,6 @@
 import { Command } from '../../types';
 import { Client, Message, MessageEmbed } from 'discord.js';
+import { helpEmbed } from '../../utils/HelpEmbed';
 
 export const runaway: Command = {
     name: 'Runaway',
@@ -16,6 +17,15 @@ export const runaway: Command = {
         'https://i.pinimg.com/originals/31/25/9d/31259df8e025259c10b1273b774918f8.gif',
     ],
     execute(client: Client, message: Message, args: Array<string>) {
+        if (args[0] === 'ajuda' || args[0] === 'help')
+            return helpEmbed(
+                this.name,
+                this.description,
+                this.aliases,
+                this.args,
+                message
+            );
+
         let gif = this.gifs[Math.floor(Math.random() * this.gifs.length)];
         let reply = `<@${message.author}> está fungindo!`;
         let user = message.mentions.users.first();

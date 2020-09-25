@@ -1,6 +1,7 @@
 import { Command } from '../../types';
 import { Client, Message } from 'discord.js';
 import { User } from '../../database/models/User';
+import { helpEmbed } from '../../utils/HelpEmbed';
 
 export const bio: Command = {
     name: 'Bio',
@@ -15,6 +16,15 @@ export const bio: Command = {
         const okEmoji = client.emojis.cache.find(
             (emoji) => emoji.name === 'certo'
         );
+
+        if (args[0] === 'ajuda' || args[0] === 'help')
+            return helpEmbed(
+                this.name,
+                this.description,
+                this.aliases,
+                this.args,
+                message
+            );
 
         if (!args.length) {
             return message.channel.send(

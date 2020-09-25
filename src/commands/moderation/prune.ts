@@ -11,6 +11,8 @@ export const prune: Command = {
         return message.channel.send(
             'Este comando não existe. Digite `f.ajuda` para ver meus comandos.'
         );
+
+        // bulk delete -> metodo de excluir 100 mensagens
         const messageDropCounter = args[0];
 
         if (messageDropCounter) {

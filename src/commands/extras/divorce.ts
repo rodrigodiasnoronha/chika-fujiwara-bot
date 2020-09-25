@@ -1,6 +1,7 @@
 import { Client, Message } from 'discord.js';
 import { User } from '../../database/models/User';
 import { Command } from '../../types';
+import { helpEmbed } from '../../utils/HelpEmbed';
 
 export const divorce: Command = {
     name: 'Divorce',
@@ -15,6 +16,15 @@ export const divorce: Command = {
         const okEmoji = client.emojis.cache.find(
             (emoji) => emoji.name === 'certo'
         );
+
+        if (args[0] === 'ajuda' || args[0] === 'help')
+            return helpEmbed(
+                this.name,
+                this.description,
+                this.aliases,
+                this.args,
+                message
+            );
 
         try {
             let user = await User.findOne({

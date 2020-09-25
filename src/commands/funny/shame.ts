@@ -1,5 +1,6 @@
 import { Client, Message, MessageEmbed } from 'discord.js';
 import { Command } from '../../types';
+import { helpEmbed } from '../../utils/HelpEmbed';
 
 export const shame: Command = {
     name: 'Shame',
@@ -17,6 +18,15 @@ export const shame: Command = {
         'https://i.pinimg.com/originals/f5/6a/4a/f56a4ab55f16832a5c887b8b52d0b04d.gif',
     ],
     execute(client: Client, message: Message, args: Array<string>) {
+        if (args[0] === 'ajuda' || args[0] === 'help')
+            return helpEmbed(
+                this.name,
+                this.description,
+                this.aliases,
+                this.args,
+                message
+            );
+
         if (args.length) {
             return message.reply(
                 'eu não entendi o que você quis dizer. Use somente o comando `shame`'

@@ -6,6 +6,7 @@ import {
     MessageEmbed,
     GuildEmojiRoleManager,
 } from 'discord.js';
+import { helpEmbed } from '../../utils/HelpEmbed';
 
 export const avatar: Command = {
     name: 'Avatar',
@@ -19,6 +20,15 @@ export const avatar: Command = {
         const errorEmoji = client.emojis.cache.find(
             (emoji) => emoji.name === 'errado'
         );
+
+        if (args[0] === 'ajuda' || args[0] === 'help')
+            return helpEmbed(
+                this.name,
+                this.description,
+                this.aliases,
+                this.args,
+                message
+            );
 
         if (!user) return;
 

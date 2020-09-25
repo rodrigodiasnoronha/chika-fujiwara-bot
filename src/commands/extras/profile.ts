@@ -1,6 +1,7 @@
 import { Command } from '../../types';
 import { Client, Message, MessageEmbed } from 'discord.js';
 import { User } from '../../database/models/User';
+import { helpEmbed } from '../../utils/HelpEmbed';
 
 export const profile: Command = {
     name: 'Profile',
@@ -12,6 +13,16 @@ export const profile: Command = {
         const errorEmoji = client.emojis.cache.find(
             (emoji) => emoji.name === 'errado'
         );
+
+        if (args[0] === 'ajuda' || args[0] === 'help')
+            return helpEmbed(
+                this.name,
+                this.description,
+                this.aliases,
+                this.args,
+                message
+            );
+
         let userTarget = message.mentions.users.size
             ? message.mentions.users.first()
             : message.author;

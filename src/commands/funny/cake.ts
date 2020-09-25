@@ -1,5 +1,6 @@
 import { Command } from '../../types';
 import { Client, Message, MessageEmbed } from 'discord.js';
+import { helpEmbed } from '../../utils/HelpEmbed';
 
 export const cake: Command = {
     name: 'Cake',
@@ -25,14 +26,23 @@ export const cake: Command = {
     execute(client: Client, message: Message, args: Array<string>) {
         const user = message.mentions.users.first();
 
-        if (args.length && !user) {
-            return message.reply(
-                'não entendi o que você quis dizer, você precisa marcar alguém!'
+        if (args[0] === 'ajuda' || args[0] === 'help')
+            return helpEmbed(
+                this.name,
+                this.description,
+                this.aliases,
+                this.args,
+                message
             );
-        }
+
+        const errorEmoji = client.emojis.cache.find(
+            (emoji) => emoji.name === 'errado'
+        );
 
         if (!user) {
-            return message.reply('você precisa marcar alguém!');
+            return message.channel.send(
+                `<:errado:${errorEmoji}> Marque algum usuário`
+            );
         }
 
         if (user.bot && user.id === client.user!.id) {

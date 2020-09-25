@@ -1,5 +1,6 @@
 import { Command } from '../../types';
 import { Client, Message } from 'discord.js';
+import { helpEmbed } from '../../utils/HelpEmbed';
 
 export const eightBall: Command = {
     name: '8Ball',
@@ -9,6 +10,15 @@ export const eightBall: Command = {
     args: ['pergunta'],
     replies: ['Não.', 'Sim.', 'Com certeza.', 'Claro que não.', 'Talvez.'],
     execute(client: Client, message: Message, args: Array<string>) {
+        if (args[0] === 'ajuda' || args[0] === 'help')
+            return helpEmbed(
+                this.name,
+                this.description,
+                this.aliases,
+                this.args,
+                message
+            );
+
         if (!args.length) {
             return message.reply('faça-me uma pergunta! :wink:');
         }

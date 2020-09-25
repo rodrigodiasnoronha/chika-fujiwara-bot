@@ -1,5 +1,6 @@
 import { Command } from '../../types';
 import { Client, Message, MessageEmbed } from 'discord.js';
+import { helpEmbed } from '../../utils/HelpEmbed';
 
 export const thinking: Command = {
     name: 'Thinking',
@@ -22,6 +23,15 @@ export const thinking: Command = {
         let gif = this.gifs[Math.floor(Math.random() * this.gifs.length)];
         let user = message.mentions.users.first();
         let reply = `<@${message.author}> está pensando!`;
+
+        if (args[0] === 'ajuda' || args[0] === 'help')
+            return helpEmbed(
+                this.name,
+                this.description,
+                this.aliases,
+                this.args,
+                message
+            );
 
         if (args.length && !user) {
             reply = `<@${message.author}> está pensando ${args.join(' ')}`;

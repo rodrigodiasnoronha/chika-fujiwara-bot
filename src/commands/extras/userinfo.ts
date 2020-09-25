@@ -2,8 +2,8 @@ import { Client, Message, MessageEmbed } from 'discord.js';
 import { Command } from '../../types';
 import moment from 'moment';
 import 'moment/locale/pt-br';
-import { measureMemory } from 'vm';
 import { User } from '../../database/models/User';
+import { helpEmbed } from '../../utils/HelpEmbed';
 moment.locale('pt-br');
 
 export const userInfo: Command = {
@@ -18,6 +18,15 @@ export const userInfo: Command = {
         const localeEmoji = client.emojis.cache.find(
             (emoji) => emoji.name === 'local'
         );
+
+        if (args[0] === 'ajuda' || args[0] === 'help')
+            return helpEmbed(
+                this.name,
+                this.description,
+                this.aliases,
+                this.args,
+                message
+            );
 
         try {
             const user = message.mentions.users.size

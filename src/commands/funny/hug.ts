@@ -1,5 +1,6 @@
 import { Command } from '../../types';
 import { Client, Message, MessageEmbed } from 'discord.js';
+import { helpEmbed } from '../../utils/HelpEmbed';
 
 export const hug: Command = {
     name: 'Hug',
@@ -15,6 +16,15 @@ export const hug: Command = {
     ],
 
     execute(client: Client, message: Message, args: Array<string>) {
+        if (args[0] === 'ajuda' || args[0] === 'help')
+            return helpEmbed(
+                this.name,
+                this.description,
+                this.aliases,
+                this.args,
+                message
+            );
+
         const gif = this.gifs![Math.floor(Math.random() * this.gifs!.length)];
         const user = message.mentions.users.first();
         let reply = `<@${message.author}> abraçou <@${user}>!`;

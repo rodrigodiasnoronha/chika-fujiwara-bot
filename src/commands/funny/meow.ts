@@ -1,5 +1,6 @@
 import { Command } from '../../types';
 import { Client, Message, MessageEmbed } from 'discord.js';
+import { helpEmbed } from '../../utils/HelpEmbed';
 
 export const meow: Command = {
     name: 'Meow',
@@ -13,6 +14,15 @@ export const meow: Command = {
         'https://i.pinimg.com/originals/8e/d7/fc/8ed7fc935759a443576f1f430774c6c7.gif',
     ],
     execute(client: Client, message: Message, args: Array<string>) {
+        if (args[0] === 'ajuda' || args[0] === 'help')
+            return helpEmbed(
+                this.name,
+                this.description,
+                this.aliases,
+                this.args,
+                message
+            );
+
         const gif = this.gifs![Math.floor(Math.random() * this.gifs!.length)];
         const messageEmbed = new MessageEmbed().setImage(gif);
         const user = message.mentions.users.first();

@@ -1,5 +1,6 @@
 import { Client, Message, MessageEmbed } from 'discord.js';
 import { Command } from '../../types';
+import { helpEmbed } from '../../utils/HelpEmbed';
 
 export const cry: Command = {
     name: 'Cry',
@@ -24,6 +25,15 @@ export const cry: Command = {
         'A vida não faz mais sentido...',
     ],
     execute(client: Client, message: Message, args: Array<string>) {
+        if (args[0] === 'ajuda' || args[0] === 'help')
+            return helpEmbed(
+                this.name,
+                this.description,
+                this.aliases,
+                this.args,
+                message
+            );
+
         const gif = this.getGif();
         const randomMessage = this.getMessage();
 

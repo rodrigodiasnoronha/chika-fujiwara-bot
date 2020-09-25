@@ -9,10 +9,11 @@ import {
 import { Command } from '../../types';
 import { User as UserModel } from '../../database/models/User';
 import { UserModel as UserModelMongo } from '../../types';
+import { helpEmbed } from '../../utils/HelpEmbed';
 
 export const marry: Command = {
     name: 'Marry',
-    description: '',
+    description: 'Case com sua Waifu!',
     aliases: ['marry', 'casar'],
     args: ['@user'],
     async execute(client: Client, message: Message, args: Array<string>) {
@@ -25,6 +26,15 @@ export const marry: Command = {
         const okEmoji = client.emojis.cache.find(
             (emoji) => emoji.name === 'certo'
         );
+
+        if (args[0] === 'ajuda' || args[0] === 'help')
+            return helpEmbed(
+                this.name,
+                this.description,
+                this.aliases,
+                this.args,
+                message
+            );
 
         if (!user)
             return message.channel.send(
@@ -113,12 +123,14 @@ export const marry: Command = {
                 message.channel.send(`
                     <:errado:${errorEmoji}> O Tempo de aceitação do pedido de casamento foi esgotado.
                 `);
+                await marryMessage.delete();
             });
 
             collector.on('remove', async () => {
                 message.channel.send(
                     '<:errado:${errorEmoji}> Listeners removidos.'
                 );
+                await marryMessage.delete();
             });
         } catch (err) {
             return message.channel.send(

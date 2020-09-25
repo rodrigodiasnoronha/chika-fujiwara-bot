@@ -1,5 +1,6 @@
 import { Client, Message, MessageEmbed } from 'discord.js';
 import { Command } from '../../types';
+import { helpEmbed } from '../../utils/HelpEmbed';
 
 export const pat: Command = {
     name: 'Pat',
@@ -17,6 +18,15 @@ export const pat: Command = {
 
     execute(client: Client, message: Message, args: Array<string>) {
         const user = message.mentions.users.first();
+
+        if (args[0] === 'ajuda' || args[0] === 'help')
+            return helpEmbed(
+                this.name,
+                this.description,
+                this.aliases,
+                this.args,
+                message
+            );
 
         if (!user) {
             return message.reply(

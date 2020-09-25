@@ -1,5 +1,6 @@
 import { Client, Message, MessageEmbed } from 'discord.js';
 import { Command } from '../../types';
+import { helpEmbed } from '../../utils/HelpEmbed';
 
 export const sleepy: Command = {
     name: 'Sleepy',
@@ -28,6 +29,15 @@ export const sleepy: Command = {
     ],
     messages: ['BUAA', 'Que sono...', 'zzzzz...'],
     execute(client: Client, message: Message, args: Array<string>) {
+        if (args[0] === 'ajuda' || args[0] === 'help')
+            return helpEmbed(
+                this.name,
+                this.description,
+                this.aliases,
+                this.args,
+                message
+            );
+
         const gif = this.gifs[Math.floor(Math.random() * this.gifs.length)];
         const msg = this.messages[
             Math.floor(Math.random() * this.messages.length)

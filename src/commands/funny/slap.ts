@@ -1,5 +1,6 @@
 import { Command } from '../../types';
 import { Client, Message, MessageEmbed } from 'discord.js';
+import { helpEmbed } from '../../utils/HelpEmbed';
 
 export const slap: Command = {
     name: 'Slap',
@@ -28,6 +29,15 @@ export const slap: Command = {
     ],
     execute(client: Client, message: Message, args: Array<string>) {
         const user = message.mentions.users.first();
+
+        if (args[0] === 'ajuda' || args[0] === 'help')
+            return helpEmbed(
+                this.name,
+                this.description,
+                this.aliases,
+                this.args,
+                message
+            );
 
         if ((args.length && !user) || !user) {
             return message.reply('você precisa marcar alguém! :wink: ');
