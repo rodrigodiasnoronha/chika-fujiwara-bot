@@ -1,5 +1,6 @@
 import { Command } from '../../types';
 import { Client, Message, MessageEmbed } from 'discord.js';
+import { helpEmbed } from '../../utils/HelpEmbed';
 
 export const bite: Command = {
     name: 'Bite',
@@ -25,9 +26,22 @@ export const bite: Command = {
         let user = message.mentions.users.first();
         let reply = `<@${message.author}> mordeu <@${user}>! - ${msg}`;
 
+        const errorEmoji = client.emojis.cache.find(
+            (emoji) => emoji.name === 'errado'
+        );
+
+        if (args[0] === 'ajuda' || args[0] === 'help')
+            return helpEmbed(
+                this.name,
+                this.description,
+                this.aliases,
+                this.args,
+                message
+            );
+
         if (args.length && !user) {
             return message.reply(
-                'não entendi o que você quis dizer, marque algum usuário.'
+                `<:errado:${errorEmoji}> Marque algum usuário.`
             );
         }
 

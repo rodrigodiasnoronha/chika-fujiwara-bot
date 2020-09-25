@@ -1,5 +1,6 @@
 import { Command } from '../../types';
 import { Client, Message, UserResolvable, MessageEmbed } from 'discord.js';
+import { helpEmbed } from '../../utils/HelpEmbed';
 
 export const kick: Command = {
     name: 'Kick',
@@ -7,6 +8,15 @@ export const kick: Command = {
     aliases: ['kick', 'expulsar', 'kickar'],
     args: ['@user'],
     async execute(client: Client, message: Message, args: Array<string>) {
+        if (args[0] === 'ajuda' || args[0] === 'help')
+            return helpEmbed(
+                this.name,
+                this.description,
+                this.aliases,
+                this.args,
+                message
+            );
+
         const user = message.mentions.users.first();
         const kickReason = args.slice(1).join(' ');
 

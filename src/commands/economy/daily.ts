@@ -3,10 +3,11 @@ import { User } from '../../database/models/User';
 import { Command } from '../../types';
 import moment from 'moment';
 import { timeOutAsync } from '../../utils/timeOutAsync';
+import { helpEmbed } from '../../utils/HelpEmbed';
 
 export const daily: Command = {
     name: 'Daily',
-    description: 'Peguei uma grana diária.',
+    description: 'Pegue uma recompensa diária.',
     aliases: ['daily'],
     args: [],
     async execute(client: Client, message: Message, args: Array<string>) {
@@ -21,6 +22,15 @@ export const daily: Command = {
         const okEmoji = client.emojis.cache.find(
             (emoji) => emoji.name === 'certo'
         );
+
+        if (args[0] === 'help' || args[0] === 'ajuda')
+            return helpEmbed(
+                this.name,
+                this.description,
+                this.aliases,
+                this.args,
+                message
+            );
 
         let loadingMessage = await message.channel.send(
             `<a:discord_loading:${loadingEmoji}> Carregando seu Daily...`

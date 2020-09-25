@@ -1,18 +1,28 @@
 import { Command } from '../../types';
 import { Client, Message, MessageEmbed } from 'discord.js';
 import { User } from '../../database/models/User';
+import { helpEmbed } from '../../utils/HelpEmbed';
 
 export const balance: Command = {
     name: 'Balance',
     description: 'Veja seu saldo monetário.',
     aliases: ['balance', 'money', 'dinheiro', 'carteira', 'yen', 'saldo'],
-    args: [],
+    args: [''],
     async execute(client: Client, message: Message, args: Array<string>) {
         const errorEmoji = client.emojis.cache.find(
             (emoji) => emoji.name === 'errado'
         );
 
         try {
+            if (args[0] === 'help' || args[0] === 'ajuda')
+                return helpEmbed(
+                    this.name,
+                    this.description,
+                    this.aliases,
+                    this.args,
+                    message
+                );
+
             const userTarget = message.mentions.users.size
                 ? message.mentions.users.first()
                 : message.author;

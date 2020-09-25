@@ -1,6 +1,7 @@
 import { Command } from '../../types';
 import { Client, Message } from 'discord.js';
 import { User } from '../../database/models/User';
+import { helpEmbed } from '../../utils/HelpEmbed';
 
 export const transfer: Command = {
     name: 'Transfer',
@@ -15,6 +16,15 @@ export const transfer: Command = {
         const okEmoji = client.emojis.cache.find(
             (emoji) => emoji.name === 'certo'
         );
+
+        if (args[0] === 'help' || args[0] === 'ajuda')
+            return helpEmbed(
+                this.name,
+                this.description,
+                this.aliases,
+                this.args,
+                message
+            );
 
         try {
             let valueToTransfer = parseInt(args[0]);

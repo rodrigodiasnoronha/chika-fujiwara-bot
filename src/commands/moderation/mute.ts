@@ -1,5 +1,6 @@
 import { Client, Message, UserResolvable } from 'discord.js';
 import { Command } from '../../types';
+import { helpEmbed } from '../../utils/HelpEmbed';
 
 export const mute: Command = {
     name: 'Mute',
@@ -7,11 +8,18 @@ export const mute: Command = {
     aliases: ['mute', 'mutar', 'silenciar'],
     args: ['time @User'],
 
-    async execute(
-        client: Client,
-        message: Message,
-        [userId, reason]: Array<string>
-    ) {
+    async execute(client: Client, message: Message, args: Array<string>) {
+        if (args[0] === 'ajuda' || args[0] === 'help')
+            return helpEmbed(
+                this.name,
+                this.description,
+                this.aliases,
+                this.args,
+                message
+            );
+
+        const [userId, reason] = args;
+
         const user = message.mentions.users.first();
         const okEmoji = client.emojis.cache.find(
             (emoji) => emoji.name === 'certo'

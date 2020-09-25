@@ -1,5 +1,6 @@
 import { Command } from '../../types';
 import { Client, Message, MessageEmbed } from 'discord.js';
+import { helpEmbed } from '../../utils/HelpEmbed';
 
 export const kiss: Command = {
     name: 'Kiss',
@@ -22,6 +23,14 @@ export const kiss: Command = {
     ],
 
     execute(client: Client, message: Message, args: Array<string>) {
+        if (args[0] === 'ajuda' || args[0] === 'help')
+            return helpEmbed(
+                this.name,
+                this.description,
+                this.aliases,
+                this.args,
+                message
+            );
         const user = message.mentions.users.first();
         const gif = this.gifs![Math.floor(Math.random() * this.gifs!.length)];
         const messageEmbed = new MessageEmbed().setImage(gif);

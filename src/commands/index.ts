@@ -74,6 +74,8 @@ export const onMessage = async (
     const args = message.content.slice(prefix.length).trim().split(/ +/);
     const command = args.shift()?.toLowerCase() || '';
 
+    if (!command || command.startsWith('.')) return;
+
     /**
      *
      * Comandos de diversão
@@ -220,11 +222,4 @@ export const onMessage = async (
     // COmands de teste
     if (dither.aliases.includes(command))
         return dither.execute(client, message, args);
-
-    const errorEmoji = client.emojis.cache.find(
-        (emoji) => emoji.name === 'errado'
-    );
-    return message.channel.send(
-        `<:errado:${errorEmoji}> Comando não encontrado. Digite \`.ajuda\`.`
-    );
 };

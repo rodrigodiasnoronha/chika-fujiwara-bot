@@ -1,9 +1,10 @@
 import { Command } from '../../types';
 import { Client, Message, MessageEmbed } from 'discord.js';
+import { helpEmbed } from '../../utils/HelpEmbed';
 
 export const attack: Command = {
-    name: 'Kill',
-    description: 'Mate alguém',
+    name: 'Matar',
+    description: 'Mate alguém.',
     aliases: ['attack', 'atacar', 'bater'],
     args: ['@user'],
     messages: [
@@ -94,8 +95,23 @@ export const attack: Command = {
         },
     ],
     async execute(client: Client, message: Message, args: Array<string>) {
+        if (args[0] === 'ajuda' || args[0] === 'help')
+            return helpEmbed(
+                this.name,
+                this.description,
+                this.aliases,
+                this.args,
+                message
+            );
+
+        const errorEmoji = client.emojis.cache.find(
+            (emoji) => emoji.name === 'errado'
+        );
+
         if (!message.mentions.users.size) {
-            return message.reply('você precisa mencionar um usuário.');
+            return message.reply(
+                `<:errado:${errorEmoji}> Você precisa mencionar um usuário.`
+            );
         }
 
         const user = message.mentions.users.first();

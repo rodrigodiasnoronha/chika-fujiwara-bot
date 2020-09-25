@@ -1,12 +1,22 @@
 import { Command } from '../../types';
 import { Client, Message, UserResolvable } from 'discord.js';
+import { helpEmbed } from '../../utils/HelpEmbed';
 
 export const ban: Command = {
     name: 'Ban',
-    description: 'Banir algum membro',
+    description: 'Banir permanentemente algum membro',
     aliases: ['ban', 'banir'],
-    args: ['@user'],
+    args: ['@user motivo'],
     async execute(client: Client, message: Message, args: Array<string>) {
+        if (args[0] === 'ajuda' || args[0] === 'help')
+            return helpEmbed(
+                this.name,
+                this.description,
+                this.aliases,
+                this.args,
+                message
+            );
+
         const errorEmoji = client.emojis.cache.find(
             (emoji) => emoji.name === 'errado'
         );

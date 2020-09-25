@@ -1,5 +1,6 @@
 import { Command } from '../../types';
 import { Client, Message } from 'discord.js';
+import { helpEmbed } from '../../utils/HelpEmbed';
 
 export const jankenpon: Command = {
     name: 'Jankenpon',
@@ -8,6 +9,15 @@ export const jankenpon: Command = {
     args: ['pedra', 'papel', 'tesoura'],
 
     execute(client: Client, message: Message, args: Array<string>) {
+        if (args[0] === 'ajuda' || args[0] === 'help')
+            return helpEmbed(
+                this.name,
+                this.description,
+                this.aliases,
+                this.args,
+                message
+            );
+
         if (!args.length) {
             return message.reply(
                 'digite `pedra` ou `papel` ou `tesoura`! :upside_down: '

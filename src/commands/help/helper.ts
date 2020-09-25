@@ -53,7 +53,7 @@ export const helper: Command = {
             this.commands.economy.length;
 
         const messageEmbed = new MessageEmbed()
-            .setTitle('Ajuda - Lista de comandos')
+            .setTitle(`Ajuda - Lista de comandos | ${totalCommands} Comandos`)
             .setThumbnail(
                 'https://cdn.discordapp.com/emojis/753988417091797152.png'
             )
@@ -62,7 +62,9 @@ export const helper: Command = {
             .addField(':moneybag: | Economia', economyCommands)
             .addField(':smile: | Diversão', funCommands)
             .addField(':star: | Extras', extrasCommands)
-            .setFooter(`Lista de comandos - Chika | ${totalCommands} comandos`);
+            .setFooter(
+                `Digite \`.comando help\` para ver infomações sobre o comando.`
+            );
         return message.channel.send(messageEmbed);
     },
 };

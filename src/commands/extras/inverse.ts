@@ -1,6 +1,7 @@
 import { Client, Message } from 'discord.js';
 import { Command } from '../../types';
 import jimp from 'jimp';
+import { helpEmbed } from '../../utils/HelpEmbed';
 
 export const inverse: Command = {
     name: 'Inverse',
@@ -8,6 +9,15 @@ export const inverse: Command = {
     aliases: ['inverse', 'inverter'],
     args: ['@user'],
     async execute(client: Client, message: Message, args: Array<string>) {
+        if (args[0] === 'ajuda' || args[0] === 'help')
+            return helpEmbed(
+                this.name,
+                this.description,
+                this.aliases,
+                this.args,
+                message
+            );
+
         try {
             const profileImage = message.mentions.users.size
                 ? message.mentions.users

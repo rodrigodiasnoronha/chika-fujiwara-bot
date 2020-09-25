@@ -1,6 +1,7 @@
 import { Client, Message, MessageEmbed } from 'discord.js';
 import { User } from '../../database/models/User';
 import { Command } from '../../types';
+import { helpEmbed } from '../../utils/HelpEmbed';
 
 /**
  *
@@ -13,8 +14,8 @@ import { Command } from '../../types';
  *
  */
 export const top: Command = {
-    name: '',
-    description: 'Veja os usuários mais ricos do server',
+    name: 'Top',
+    description: 'Veja os usuários mais ricos do server.',
     aliases: ['top', 'rank'],
     args: ['money'],
     async execute(client: Client, message: Message, args: Array<string>) {
@@ -25,6 +26,15 @@ export const top: Command = {
         const loadingEmoji = client.emojis.cache.find(
             (emoji) => emoji.name === 'discord_loading'
         );
+
+        if (args[0] === 'ajuda' || args[0] === 'help')
+            return helpEmbed(
+                this.name,
+                this.description,
+                this.aliases,
+                this.args,
+                message
+            );
 
         const loadingMessage = await message.channel.send(`
             <a:discord_loading:${loadingEmoji}>  Carregando rank...
