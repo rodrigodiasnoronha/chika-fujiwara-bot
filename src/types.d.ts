@@ -34,3 +34,8 @@ interface CurrencyShopModel extends Document {
     name: string;
     cost: number;
 }
+
+interface ServerConfigModel extends Document {
+    autorole_id?: string;
+    guild_id: string;
+}

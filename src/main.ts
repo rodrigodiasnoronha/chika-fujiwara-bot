@@ -2,6 +2,7 @@ import 'dotenv/config';
 import { Client, Collection } from 'discord.js';
 import * as database from './database';
 import { onMessage } from './commands';
+import { guildMemberAdd } from './listeners/guildMemberAdd';
 import { presences } from './utils/presences';
 
 const client = new Client();
@@ -28,6 +29,10 @@ client.on(
     'message',
     async (message) => await onMessage(client, message, prefix)
 );
+
+client.on('guildMemberAdd', async (user) => {
+    await guildMemberAdd(user, client);
+});
 
 const token = process.env.MY_APP_CLIENT_TOKEN;
 client.login(token);

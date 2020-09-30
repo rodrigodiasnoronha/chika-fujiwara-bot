@@ -51,6 +51,7 @@ import { top } from './extras/top';
 
 // test commands
 import { dither } from './test/commands';
+import { autorole } from './moderation/autorole';
 
 export const onMessage = async (
     client: Client,
@@ -151,6 +152,9 @@ export const onMessage = async (
 
     if (unmute.aliases.includes(command))
         return unmute.execute(client, message, args);
+
+    if (autorole.aliases.includes(command))
+        return autorole.execute(client, message, args);
 
     /**
      *

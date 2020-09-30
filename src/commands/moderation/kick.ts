@@ -58,6 +58,10 @@ export const kick: Command = {
             await message.guild
                 ?.member(user as UserResolvable)
                 ?.kick(kickReason);
+
+            return message.channel.send(
+                `<:certo:${okEmoji}> Usuário foi kickado com sucesso.`
+            );
         } catch (err) {
             return message.channel.send(
                 `<:errado:${errorEmoji}> Ocorreu um erro ao expulsar o usuário`

@@ -1,6 +1,7 @@
 import { Command } from '../../types';
 import { Client, Message } from 'discord.js';
 import { measureMemory } from 'vm';
+import { helpEmbed } from '../../utils/HelpEmbed';
 
 export const prune: Command = {
     name: 'Prune',
@@ -8,41 +9,19 @@ export const prune: Command = {
     aliases: ['prune'],
     args: ['quantidade_mensagens_apagar'],
     async execute(client: Client, message: Message, args: Array<string>) {
-        return message.channel.send(
-            'Este comando não existe. Digite `f.ajuda` para ver meus comandos.'
-        );
-
         // bulk delete -> metodo de excluir 100 mensagens
         const messageDropCounter = args[0];
 
-        if (messageDropCounter) {
-            if (!Number.isInteger(messageDropCounter))
-                return message.reply('digite um valor válido');
-
-            const value = Number(messageDropCounter);
-            if (value < 2 || value > 100)
-                return message.reply('Digite um valor entre 2 e 100');
-        }
-
-        try {
-            const value = Number(messageDropCounter || 100);
-            let counter = 0;
-            const last100Messages = await message.channel.messages.fetch(
-                { limit: value, before: message.id },
-                true
+        if (args[0] === 'ajuda' || args[0] === 'help')
+            return helpEmbed(
+                this.name,
+                this.description,
+                this.aliases,
+                this.aliases,
+                message
             );
 
-            last100Messages.forEach(async (item) => {
-                if (!item.author.bot) return 0;
-                await item.delete();
-                counter++;
-            });
-
-            return message.channel.send(`O chat foi limpo.`);
-        } catch (err) {
-            return message.reply('ocorreu um erro ao excluir as mensagens.');
-        }
-
-        return message.channel.send('prune');
+        if (isNaN(Number.parseInt(messageDropCounter)))
+            return message.channel.send('não é um número o que vc digitou');
     },
 };
